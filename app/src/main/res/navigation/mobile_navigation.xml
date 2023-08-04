@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.berry.groceryapp.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_ass_stocks"
+        android:name="com.berry.groceryapp.ui.gallery.AddStockFragment"
+        android:label="@string/add_stock"
+        tools:layout="@layout/fragment_search_stock" />
+
+    <fragment
+        android:id="@+id/nav_sales"
+        android:name="com.berry.groceryapp.SalesFragment"
+        android:label="@string/sales"
+        tools:layout="@layout/fragment_sales" />
+
+    <fragment
+        android:id="@+id/nav_purchanse"
+        android:name="com.berry.groceryapp.ui.slideshow.PurchaseFragment"
+        android:label="@string/purachase"
+        tools:layout="@layout/fragment_purchase" />
+    <fragment
+        android:id="@+id/nav_search_stock"
+        android:name="com.berry.groceryapp.SearchStockFragment"
+        android:label="Search Stock"
+        tools:layout="@layout/fragment_search_stock" />
+    <fragment
+        android:id="@+id/nav_list_stock"
+        android:name="com.berry.groceryapp.ListStockFragment"
+        android:label="List Stock"
+        tools:layout="@layout/fragment_list_stock" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.berry.groceryapp.ListStockFragment"
+        android:label="Log Out"
+        tools:layout="@layout/fragment_home" />
+
+
+    <!-- Define the action between FragmentA and FragmentB -->
+    <action
+        android:id="@+id/action_back_to_home"
+        app:destination="@id/nav_home" />
+
+
+</navigation>

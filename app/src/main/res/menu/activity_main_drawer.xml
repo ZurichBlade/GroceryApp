@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_ass_stocks"
+            android:icon="@drawable/baseline_add_stocks_24"
+            android:title="@string/add_stock" />
+
+        <item
+            android:id="@+id/nav_sales"
+            android:icon="@drawable/baseline_point_of_sale_24"
+            android:title="@string/sales" />
+
+        <item
+            android:id="@+id/nav_purchanse"
+            android:icon="@drawable/baseline_shopping_bag_24"
+            android:title="@string/purachase" />
+
+        <item
+            android:id="@+id/nav_search_stock"
+            android:icon="@drawable/baseline_manage_search_24"
+            android:title="@string/str_search_stock" />
+
+        <item
+            android:id="@+id/nav_list_stock"
+            android:icon="@drawable/baseline_format_list_numbered_24"
+            android:title="@string/list_stock" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/baseline_logout_24"
+            android:title="@string/log_out" />
+    </group>
+</menu>
