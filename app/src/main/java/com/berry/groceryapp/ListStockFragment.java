@@ -1,6 +1,7 @@
 package com.berry.groceryapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.berry.groceryapp.databinding.FragmentListStockBinding;
+import com.berry.groceryapp.model.StockItemData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ public class ListStockFragment extends Fragment {
     DataBaseHelper dataBaseHelper;
     private FragmentListStockBinding binding;
     private MyAdapter adapter;
-    private List<String> dataList;
+    private ArrayList<StockItemData> stockList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,15 +43,11 @@ public class ListStockFragment extends Fragment {
             requireActivity().onBackPressed();
         });
 
-        dataList = new ArrayList<>();
-        // Add data to the dataList (e.g., from a database or API)
-        dataList.add("Item 1");
-        dataList.add("Item 2");
-        dataList.add("Item 3");
-        // Add more items as needed
 
+        //to get list of all stock.
+        stockList = dataBaseHelper.getAllStocks();
 
-        adapter = new MyAdapter(dataList);
+        adapter = new MyAdapter(stockList);
         binding.recyclerView.setAdapter(adapter);
 
     }

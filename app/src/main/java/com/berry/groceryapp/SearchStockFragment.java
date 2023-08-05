@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.berry.groceryapp.databinding.FragmentSearchStockBinding;
+import com.berry.groceryapp.model.StockItemData;
 
 public class SearchStockFragment extends Fragment {
 
@@ -41,6 +42,20 @@ public class SearchStockFragment extends Fragment {
         binding.btnSave.setOnClickListener(view1 -> {
             if (isValid()) {
                 String itemCode = binding.edtItemCode.getText().toString();
+                StockItemData stockItemData = dataBaseHelper.getStockItemById(Integer.parseInt(itemCode));
+
+                if (stockItemData != null) {
+                    // The item with the given ID was found, and you can access its properties using stockItem.
+                    CommonUtils.showMaterialDialog(getContext(), "Item: " + stockItemData.getItemName() + "\n" +
+                            "Quantity: " + stockItemData.getQtyStock() + "\n" +
+                            "Price: " + stockItemData.getPrice(), (dialogInterface, i) -> {
+                    });
+                } else {
+                    // The item with the given ID was not found.
+                    CommonUtils.showMaterialDialog(getContext(), "Item Not Found", (dialogInterface, i) -> {
+                    });
+                }
+
             }
         });
 
@@ -51,7 +66,7 @@ public class SearchStockFragment extends Fragment {
     protected boolean isValid() {
         String itemCode = binding.edtItemCode.getText().toString();
         if (itemCode.length() == 0) {
-            CommonUtils.showMaterialDialog(getContext(), "You should fill the blanks!", (dialogInterface, i) -> {
+            CommonUtils.showMaterialDialog(getContext(), "Please enter Item Code!", (dialogInterface, i) -> {
             });
             return false;
         }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.berry.groceryapp.CommonUtils;
 import com.berry.groceryapp.DataBaseHelper;
 import com.berry.groceryapp.databinding.FragmentPurchaseBinding;
+import com.berry.groceryapp.model.StockItemData;
 
 public class PurchaseFragment extends Fragment {
 
@@ -46,22 +47,48 @@ public class PurchaseFragment extends Fragment {
                 String qtySold = binding.edtQtySold.getText().toString();
                 String dop = binding.edtDop.getText().toString();
 
-                // Add a new record to the sales table
-                long addNewItem = dataBaseHelper.insertPurchaseItem(Integer.parseInt(itemCode), Integer.parseInt(qtySold), dop);
-
-                if (addNewItem != -1) {
-                    // Successfully inserted the record
-                    CommonUtils.showMaterialDialog(getContext(), "Item Added Successfully to Purchase.", (dialogInterface, i) -> {
-                        binding.edtItemCode.setText("");
-                        binding.edtQtySold.setText("");
-                        binding.edtDop.setText("");
-                    });
-                } else {
-                    // Failed to insert the record
-                }
+                checkItemExist(itemCode, qtySold, dop);
 
             }
         });
+
+
+    }
+
+    private void checkItemExist(String itemCode, String qtySold, String dop) {
+
+        StockItemData stockItemData = dataBaseHelper.getStockItemById(Integer.parseInt(itemCode));
+        if (stockItemData != null) {
+            // The item with the given ID was found, and you can access its properties using stockItem.
+            addPurchaseData(itemCode, qtySold, dop);
+
+        } else {
+            // The item with the given ID was not found.
+            CommonUtils.showMaterialDialog(getContext(), "Item Not Found", (dialogInterface, i) -> {
+            });
+        }
+
+    }
+
+    private void addPurchaseData(String itemCode, String qtySold, String dop) {
+
+        // Add a new record to the sales table
+        long addNewItem = dataBaseHelper.insertPurchaseItem(Integer.parseInt(itemCode), Integer.parseInt(qtySold), dop);
+
+        if (addNewItem != -1) {
+            // Successfully inserted the record
+            CommonUtils.showMaterialDialog(getContext(), "Item Purchased Successfully.", (dialogInterface, i) -> {
+                binding.edtItemCode.setText("");
+                binding.edtQtySold.setText("");
+                binding.edtDop.setText("");
+            });
+
+            //updating the stock table
+            dataBaseHelper.updateQtyStock(Integer.parseInt(itemCode), Integer.parseInt(qtySold));
+
+        } else {
+            // Failed to insert the record
+        }
 
 
     }

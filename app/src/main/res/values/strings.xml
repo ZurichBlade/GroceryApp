@@ -18,4 +18,17 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sales">Sales</string>
+    <string name="please_enter_username_and_password">Please enter username and password!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="registration_is_successful">Registration is Successful!</string>
+    <string name="passwords_should_match">Passwords should match!</string>
+    <string name="please_enter_valid_email">Please enter valid email!</string>
+    <string name="please_fill_all_the_fields">Please fill all the fields!</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="back_to_log_in">Back to Log In</string>
+    <string name="welcome">"Welcome "</string>
 </resources>

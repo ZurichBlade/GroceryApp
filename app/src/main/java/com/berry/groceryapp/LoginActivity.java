@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,7 +40,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         binding.buttonLogin.setOnClickListener(view1 -> {
-            if (isLoginCredentialsValid()) {
+
+            CommonUtils.hideKeyboard(this);
+
+            if (isLoginCredentialsValid(view1)) {
                 String userName = binding.editTextUsername.getText().toString();
                 String password = binding.editTextPassword.getText().toString();
                 if (dataBaseHelper.isUserValid(userName, password)) {
@@ -59,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.buttonSignUp.setOnClickListener(view1 -> {
+            CommonUtils.hideKeyboard(this);
             Intent registerIntent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivityForResult(registerIntent, REGISTER_REQUEST_CODE);
         });
@@ -67,35 +70,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-/*    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REGISTER_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                //Toast.makeText(LoginActivity.this,data.getStringExtra("username"), Toast.LENGTH_SHORT).show();
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(LoginActivity.this, "Couldn't register!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(LoginActivity.this, "Unexpected result Code!", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(LoginActivity.this, "Unexpected request Code!", Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
-
-    protected boolean isLoginCredentialsValid() {
+    protected boolean isLoginCredentialsValid(View view) {
         String userName = binding.editTextUsername.getText().toString();
         String password = binding.editTextPassword.getText().toString();
         if (userName.length() == 0 || password.length() == 0) {
-            Toast.makeText(LoginActivity.this, "You should fill the blanks!"
-                    , Toast.LENGTH_SHORT).show();
+            CommonUtils.showCustomSnackBar(view, getString(R.string.please_enter_username_and_password));
             return false;
         }
         return true;
     }
 
 
+    //storing user status in preference.
     private void saveLoginStatus(boolean isLoggedIn) {
         SharedPreferences preferences = this.getSharedPreferences(PREFERENCES, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();

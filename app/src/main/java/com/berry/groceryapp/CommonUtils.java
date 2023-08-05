@@ -25,12 +25,7 @@ import java.util.Locale;
 public class CommonUtils {
 
     public static String PREFERENCES = "MySharedPref";
-    public static String NO_IMAGE = "no_image";
     public static String PREF_USERNAME = "username";
-    public static String PREF_ENTRY_ID = "entry_id";
-    public static String PREF_PHOTO_ID = "photo_index";
-    public static String PREF_USER_IMG = "img_user";
-    public static String PREF_NOTIF = "notif_status";
 
 
     public static void setStringPref(String key, String value, Context context) {
@@ -107,10 +102,6 @@ public class CommonUtils {
     public static boolean isEmailValid(String email) {
         String emailPattern = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
         return email.matches(emailPattern);
-    }
-
-    public static void delayedFunction() throws InterruptedException {
-        Thread.sleep(500);
     }
 
 

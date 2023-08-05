@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -15,7 +15,7 @@
             android:id="@+id/textInputLayoutUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username">
+            android:hint="@string/username">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextUsername"
@@ -30,7 +30,7 @@
             android:id="@+id/textInputLayoutEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email">
+            android:hint="@string/email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextEmail"
@@ -44,7 +44,7 @@
             android:id="@+id/textInputLayoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password">
+            android:hint="@string/password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPassword"
@@ -58,7 +58,7 @@
             android:id="@+id/textInputLayoutCPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password">
+            android:hint="@string/confirm_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextCPassword"
@@ -73,14 +73,14 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up" />
+            android:text="@string/sign_up" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogin"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Back to Log In" />
+            android:text="@string/back_to_log_in" />
 
 
     </LinearLayout>

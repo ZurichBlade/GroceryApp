@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.berry.groceryapp.R;
 import com.berry.groceryapp.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -17,7 +18,6 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         String userName = getActivity().getIntent().getStringExtra("USERNAME");
-        binding.textHome.setText("Welcome " + userName);
+        binding.textHome.setText(getString(R.string.welcome) + userName);
 
     }
 

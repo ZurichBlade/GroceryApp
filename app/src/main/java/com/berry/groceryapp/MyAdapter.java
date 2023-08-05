@@ -1,5 +1,6 @@
 package com.berry.groceryapp;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,15 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.berry.groceryapp.model.StockItemData;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private final List<String> dataList;
+    private final ArrayList<StockItemData> dataList;
 
-    public MyAdapter(List<String> dataList) {
+    public MyAdapter(ArrayList<StockItemData> dataList) {
         this.dataList = dataList;
     }
 
@@ -27,10 +29,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String data = dataList.get(position);
-        holder.tvItemCode.setText(data);
+        StockItemData stockItemData = dataList.get(position);
+        holder.tvItemCode.setText(Integer.toString(stockItemData.getItemCode()));
+        holder.tvItemName.setText(stockItemData.getItemName());
+        holder.tvQtyStock.setText(Integer.toString(stockItemData.getQtyStock()));
+        holder.tvPrice.setText(Float.toString(stockItemData.getPrice()));
     }
 
     @Override
