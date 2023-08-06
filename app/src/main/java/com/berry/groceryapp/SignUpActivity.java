@@ -20,6 +20,7 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        getSupportActionBar().hide();
 
         binding.buttonLogin.setOnClickListener(view1 -> {
             CommonUtils.hideKeyboard(this);

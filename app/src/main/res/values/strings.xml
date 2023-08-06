@@ -31,4 +31,21 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="back_to_log_in">Back to Log In</string>
     <string name="welcome">"Welcome "</string>
+    <string name="item_name">Item Name</string>
+    <string name="qty_in_stock">Qty In Stock</string>
+    <string name="price">Price</string>
+    <string name="returnable">Returnable</string>
+    <string name="nonreturnable">NonReturnable</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="item_code">Item Code</string>
+    <string name="qty_purchased">Qty Purchased</string>
+    <string name="date_of_purchase">Date of Purchase</string>
+    <string name="submit">Submit</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="customer_email">Customer Email</string>
+    <string name="qty_sold">Qty Sold</string>
+    <string name="date_of_sales">Date of Sales</string>
+    <string name="search">Search</string>
+    <string name="search_results"><b>Item: </b>%s \n<b>Quantity: </b>%d \n<b>Price: </b>%.2f</string>
 </resources>

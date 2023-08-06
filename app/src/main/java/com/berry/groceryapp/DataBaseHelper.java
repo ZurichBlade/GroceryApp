@@ -61,8 +61,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         //creating tables.
-        //user
-        String CREATE_TABLE_QUERY = "CREATE TABLE " + TABLE_USER + " (ID INTEGER PRIMARY KEY, USERNAME TEXT NOT NULL," + " EMAIL TEXT NOT NULL," + " PASSWORD TEXT NOT NULL)";
+
+        // SQL query to create the User table
+        String CREATE_TABLE_QUERY = "CREATE TABLE " + TABLE_USER + " (" +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_USERNAME + " TEXT, " +
+                COL_EMAIL + " TEXT, " +
+                COL_PASSWORD + " TEXT);";
         sqLiteDatabase.execSQL(CREATE_TABLE_QUERY);
 
         //stock
@@ -114,16 +119,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean insertUser(String userName, String email, String password)/* throws InsertException*/ {
-        //String INSERT_USER_QUERY = "INSERT INTO " + TABLE_NAME + " VALUES"...
-        /*
-        String IS_USERNAME_EXISTS_QUERY = "SELECT EXISTS(SELECT 1 FROM" +TABLE_NAME + " WHERE " +
-                COL_USERNAME + " = " + userName + ");";
-        Cursor existedUserCursor = sqLiteDatabase.rawQuery(IS_USERNAME_EXISTS_QUERY,null);
-        if(existedUserCursor.getCount() > 0){
-            throw new InsertException();
-        }
-        */
-
         this.sqLiteDatabase = getWritableDatabase();
         String SELECT_ALL_QUERY = "SELECT * FROM " + TABLE_USER;
         Cursor allUsersCursor = sqLiteDatabase.rawQuery(SELECT_ALL_QUERY, null);
@@ -143,23 +138,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     //to authenticate user.
-    public boolean isUserValid(String userName, String password) {
-        this.sqLiteDatabase = getReadableDatabase();
-        String getUserFromDBQuery = "SELECT * FROM " + TABLE_USER + " WHERE USERNAME ='" + userName + "'";
-
-        Cursor cursor = sqLiteDatabase.rawQuery(getUserFromDBQuery, null);
-        if (cursor.moveToFirst()) {
-            if (cursor.getString(2).equals(password)) {
-                sqLiteDatabase.close();
-                return true;
-            } else {
-                sqLiteDatabase.close();
-                return false;
-            }
-        } else {
-            sqLiteDatabase.close();
-            return false;
-        }
+    // Method to check if a user exists with the given username and password
+    public boolean checkUserCredentials(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {COL_USERNAME};
+        String selection = COL_USERNAME + " = ? AND " + COL_PASSWORD + " = ?";
+        String[] selectionArgs = {username, password};
+        Cursor cursor = db.query(TABLE_USER, columns, selection, selectionArgs, null, null, null);
+        boolean userExists = cursor.moveToFirst();
+        cursor.close();
+        db.close();
+        return userExists;
     }
 
 
@@ -279,7 +268,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     // Method to update the qtyStock of an item based on the itemCode and sold quantity
     public void updateSalesQtyStock(int itemCode, int qtyPurchased) {
         this.sqLiteDatabase = getReadableDatabase();
@@ -292,7 +280,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.close();
     }
-
 
 
 }

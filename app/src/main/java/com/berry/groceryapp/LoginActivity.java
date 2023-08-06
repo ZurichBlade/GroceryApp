@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        getSupportActionBar().hide();
 
         dataBaseHelper = new DataBaseHelper(LoginActivity.this);
 
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             if (isLoginCredentialsValid(view1)) {
                 String userName = binding.editTextUsername.getText().toString();
                 String password = binding.editTextPassword.getText().toString();
-                if (dataBaseHelper.isUserValid(userName, password)) {
+                if (dataBaseHelper.checkUserCredentials(userName, password)) {
                     saveLoginStatus(true);
                     CommonUtils.setStringPref(PREF_USERNAME, userName, LoginActivity.this);
                     Intent homeIntent = new Intent(LoginActivity.this, MainActivity.class);
