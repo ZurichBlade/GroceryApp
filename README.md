@@ -7,7 +7,7 @@ The Grocery app is a user-friendly solution showcasing seamless integration of S
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/ZurichBlade/GroceryApp/blob/master/app/src/main/res/drawable/app_ss.png)
 
 
 ## Features
