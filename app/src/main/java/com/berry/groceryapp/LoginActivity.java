@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             CommonUtils.hideKeyboard(this);
 
             if (isLoginCredentialsValid(view1)) {
-                String userName = binding.editTextUsername.getText().toString();
+                String userName = binding.editTextUsername.getText().toString().trim();
                 String password = binding.editTextPassword.getText().toString();
                 if (dataBaseHelper.checkUserCredentials(userName, password)) {
                     saveLoginStatus(true);
